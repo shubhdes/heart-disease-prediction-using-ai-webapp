@@ -64,17 +64,6 @@ public abstract class PredictionUtils {
 		final Evaluation eval = new Evaluation(trainingDataSet);
 		eval.evaluateModel(model, testingDataSet);
 
-		Instance predictionDataSet = new DenseInstance(10);
-		predictionDataSet.setValue(0, 50);
-		predictionDataSet.setValue(1, 0);
-		predictionDataSet.setValue(2, 0);
-		predictionDataSet.setValue(3, 160);
-		predictionDataSet.setValue(4, 1);
-		predictionDataSet.setValue(5, 190);
-		predictionDataSet.setValue(6, 130);
-		predictionDataSet.setValue(7, 160);
-		predictionDataSet.setValue(8, 85);
-
 	}
 
 	public static double predict(final String age, final String gender, final String cig, final String chol,
@@ -87,12 +76,11 @@ public abstract class PredictionUtils {
 		predictionDataSet.setValue(1, Double.valueOf(gender));
 		predictionDataSet.setValue(2, Double.valueOf(cig));
 		predictionDataSet.setValue(3, Double.valueOf(chol));
-		predictionDataSet.setValue(4, Double.valueOf(dia));
+		predictionDataSet.setValue(4, Double.valueOf(diab));
 		predictionDataSet.setValue(5, Double.valueOf(sys));
 		predictionDataSet.setValue(6, Double.valueOf(dia));
 		predictionDataSet.setValue(7, Double.valueOf(glu));
 		predictionDataSet.setValue(8, Double.valueOf(heartrate));
-
 		predictionDataSet.setDataset(trainingDataSet);
 
 		// prediction

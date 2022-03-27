@@ -47,7 +47,7 @@ public class CreateRegistrationFirstStepController extends CommonController {
 				+ mobile + " secretQuestion:" + secretQuestion + " answer:" + answer + " password:" + password);
 
 		// verify if user already exist
-		final ProcessVO processVO = this.registrationService.userExists(emailId);
+		final ProcessVO processVO = this.registrationService.userExists(fname, emailId);
 
 		logger.info("Result returned from service:" + processVO);
 

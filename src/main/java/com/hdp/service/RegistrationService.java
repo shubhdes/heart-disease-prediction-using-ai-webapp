@@ -29,7 +29,7 @@ public class RegistrationService {
 		this.loginDAO = new LoginDAO();
 	}
 
-	public ProcessVO userExists(final String username) {
+	public ProcessVO userExists(final String fname, final String username) {
 		//
 		try {
 			// verify if user already exist

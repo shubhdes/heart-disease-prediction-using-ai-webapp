@@ -16,18 +16,18 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/formValidation.css"/> <%--used for validation--%>
         <link rel="stylesheet" href="${pageContext.request.contextPath}/font-awesome-4.7.0/css/font-awesome.css"/> 
         <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/breadcrumbs.css"/>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.css"/>
-        <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/bootstrap-magnify.css">
+        <!--  <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/bootstrap-datetimepicker.css"/>-->
+        <!--  <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/bootstrap-magnify.css">-->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/magnify.css">
         
          <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/jquery-3.1.1.js"></script>
-         <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/jquery-1.12.0.js"></script>
+         <!--  <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/jquery-1.12.0.js"></script>-->
          <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-         <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/moment.js"></script>
-         <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script>
+         <!-- <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/moment.js"></script> -->
+        <!--  <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap-datetimepicker.js"></script> -->
          <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/formValidation.js"></script> <%--used for validation--%>
          <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap_1.js"></script>  <%--used for validation--%>
-         <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap-magnify.js"></script>
+        <!-- <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap-magnify.js"></script> -->
 
         
        <script>

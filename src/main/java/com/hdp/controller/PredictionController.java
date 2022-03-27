@@ -53,9 +53,10 @@ public class PredictionController extends CommonController {
 				+ " chol:" + chol + " dia:" + dia + " sys:" + sys + " diab:" + diab + " glu:" + glu + " heartrate:"
 				+ heartrate);
 
+		final String fname = session.getAttribute(HttpUtils.fnameParam).toString();
 		// predict result
-		final ProcessVO processVO = this.predictionService.predict(username, age, gender, cig, chol, dia, sys, diab,
-				glu, heartrate);
+		final ProcessVO processVO = this.predictionService.predict(fname, username, age, gender, cig, chol, dia, sys,
+				diab, glu, heartrate);
 
 		logger.info("Result returned from service:" + processVO);
 

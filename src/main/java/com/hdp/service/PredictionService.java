@@ -21,21 +21,21 @@ public class PredictionService {
 		//
 	}
 
-	public ProcessVO predict(final String username, final String age, final String gender, final String cig,
-			final String chol, final String dia, final String sys, final String diab, final String glu,
-			final String heartrate) throws MalformedURLException, IOException {
+	public ProcessVO predict(final String fname, final String username, final String age, final String gender,
+			final String cig, final String chol, final String dia, final String sys, final String diab,
+			final String glu, final String heartrate) throws MalformedURLException, IOException {
 		//
 		try {
 			logger.info("Logistic model call to retrieve prediction started");
 			double predictionClass = PredictionUtils.predict(age, gender, cig, chol, dia, sys, diab, glu, heartrate);
-			logger.info("Logistic model call to retrieve prediction completed httpResponse:" + predictionClass);
+			logger.info("Logistic model call to retrieve prediction completed prediction:" + predictionClass);
 
 			// mail body
-			String body = predictionClass == 1 ? "Danger Zone" : "Safe Zone";
+			String body = predictionClass == 1 ? "danger zone" : "safe zone";
 
 			// send prediction report email
 			logger.info("Sending email for predicition request");
-			MailingUtils.predictionEmail(new String[] { username, body }, username);
+			MailingUtils.predictionEmail(new String[] { fname, body }, username);
 			logger.info("Email sent for predicition request");
 
 			return new ProcessVO(ProcessStatus.PREDICTION_SUCCESS,
