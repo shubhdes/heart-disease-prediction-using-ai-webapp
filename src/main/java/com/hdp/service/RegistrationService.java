@@ -68,10 +68,13 @@ public class RegistrationService {
 		//
 		try {
 			// verify otp
-			if (!otp0.equalsIgnoreCase(otp1)) {
+			final String emailId = userId;
+			final ProcessStatus otpProcessStatus = otpService.findNewUserOTP(emailId, otp1);
+
+			if (ProcessStatus.NEW_USER_OTP_MATCHED != otpProcessStatus) {
 				// otp does not match
 				logger.info("Registration OTP does not match otp0:" + otp0 + " otp1:" + otp1);
-				return new ProcessVO(ProcessStatus.NEW_USER_OTP_MISMATCHED, Collections.emptyMap());
+				return new ProcessVO(otpProcessStatus, Collections.emptyMap());
 			}
 
 			// otp does match
@@ -79,8 +82,6 @@ public class RegistrationService {
 			final LoginVO loginVO = new LoginVO(userId, password);
 			loginDAO.newUser(loginVO);
 			logger.info("User login details saved userId:" + userId + " password:" + password);
-
-			String emailId = userId;
 
 			logger.info("Registration details saving fname:" + fname + " lname:" + lname + " emailId:" + emailId
 					+ " mobile:" + mobile + " secretQuestion:" + secretQuestion + " answer:" + answer);

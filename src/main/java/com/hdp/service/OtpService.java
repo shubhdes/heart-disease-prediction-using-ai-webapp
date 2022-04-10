@@ -2,6 +2,7 @@ package com.hdp.service;
 
 import java.sql.SQLException;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,7 +28,7 @@ public class OtpService {
 
 		final String otp = CommonUtils.otp();
 
-		final OtpVO otpVO = new OtpVO(userId, otp, processStatus.name(), System.currentTimeMillis());
+		final OtpVO otpVO = new OtpVO(0l, userId, otp, processStatus.name(), System.currentTimeMillis());
 		otpDAO.newOtp(otpVO);
 		return otp;
 	}
@@ -48,25 +49,62 @@ public class OtpService {
 		return otp;
 	}
 
-	private Optional<OtpVO> findOtp(final String userId, final ProcessStatus processStatus) throws SQLException {
+	private Optional<OtpVO> findOtp(final String otp, final String userId, final ProcessStatus processStatus)
+			throws SQLException {
 		// find otp
-		final OtpVO otpVO = new OtpVO(userId, null, processStatus.name(), null);
-		return otpDAO.findOtp(userId, processStatus.name());
+		final OtpVO otpVO = new OtpVO(0l, userId, otp, processStatus.name(), 0l);
+		return otpDAO.findOtp(otpVO);
 	}
 
-	public Optional<OtpVO> findNewUserOTP(final String emailId) throws SQLException {
+	public ProcessStatus findNewUserOTP(final String emailId, final String otp) throws SQLException {
 		// find otp for registration
 		logger.info("Finding OTP for registration request");
-		final Optional<OtpVO> otpVOOpt = findOtp(emailId, ProcessStatus.NEW_USER_OTP_SENT);
+		final Optional<OtpVO> otpVOOpt = findOtp(otp, emailId, ProcessStatus.NEW_USER_OTP_SENT);
 		logger.info("Finding OTP for registration request otp:" + otpVOOpt);
-		return otpVOOpt;
+
+		if (!otpVOOpt.isPresent()) {
+			// no such otp
+			return ProcessStatus.NEW_USER_OTP_MISMATCHED;
+		}
+		final OtpVO otpVO = otpVOOpt.get();
+		if (!otpVO.getRandom().equalsIgnoreCase(otp)) {
+			// otp mismatch
+			return ProcessStatus.NEW_USER_OTP_MISMATCHED;
+		}
+		if (TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - Long.valueOf(otpVOOpt.get().getTs())) > 300) {
+			// otp mismatch
+			return ProcessStatus.NEW_USER_OTP_EXPIRED;
+		}
+		// change otp status
+		otpVO.setStatus(ProcessStatus.NEW_USER_OTP_MATCHED.name());
+		otpDAO.updateOtp(otpVO);
+
+		return ProcessStatus.NEW_USER_OTP_MATCHED;
 	}
 
-	public Optional<OtpVO> findForgotPasswordOTP(final String userId) throws SQLException {
+	public ProcessStatus findForgotPasswordOTP(final String userId, final String otp) throws SQLException {
 		// find otp for password reset
 		logger.info("Finding OTP for forgot password request");
-		final Optional<OtpVO> otpVOOpt = findOtp(userId, ProcessStatus.FORGOT_PASSWORD_OTP_SENT);
+		final Optional<OtpVO> otpVOOpt = findOtp(otp, userId, ProcessStatus.FORGOT_PASSWORD_OTP_SENT);
 		logger.info("Finding OTP for forgot password request otp:" + otpVOOpt);
-		return otpVOOpt;
+
+		if (!otpVOOpt.isPresent()) {
+			// no such otp
+			return ProcessStatus.FORGOT_PASSWORD_OTP_MISMATCHED;
+		}
+		final OtpVO otpVO = otpVOOpt.get();
+		if (!otpVO.getRandom().equalsIgnoreCase(otp)) {
+			// otp mismatch
+			return ProcessStatus.FORGOT_PASSWORD_OTP_MISMATCHED;
+		}
+		if (TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - Long.valueOf(otpVOOpt.get().getTs())) > 300) {
+			// otp mismatch
+			return ProcessStatus.FORGOT_PASSWORD_OTP_EXPIRED;
+		}
+		// change otp status
+		otpVO.setStatus(ProcessStatus.FORGOT_PASSWORD_OTP_MATCHED.name());
+		otpDAO.updateOtp(otpVO);
+
+		return ProcessStatus.FORGOT_PASSWORD_OTP_MATCHED;
 	}
 }

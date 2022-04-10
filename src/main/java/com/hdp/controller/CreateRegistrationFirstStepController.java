@@ -55,7 +55,7 @@ public class CreateRegistrationFirstStepController extends CommonController {
 
 			// user does exist
 			request.setAttribute("errormsg",
-					"<div class='alert alert-danger' style='height:70px;text-align:center'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>The specified email id is already registered with us.Try using a different one</div>");
+					"<div class='alert alert-danger' style='height:70px;text-align:center'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>The specified email id is already registered with us.Try using a different one.</div>");
 			request.setAttribute("autofocus", "autofocus");
 
 			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/newuser.jsp");
@@ -67,7 +67,7 @@ public class CreateRegistrationFirstStepController extends CommonController {
 			// user does not exist
 
 			request.setAttribute("errormsg",
-					"<div class='alert alert-success' style='text-align: center;'>An OTP value is sent to the specified email address. Please enter the same to complete the registration process</div>");
+					"<div class='alert alert-success' style='text-align: center;'>An OTP value is sent to the specified email address. Please enter the same to complete the registration process.</div>");
 
 			request.setAttribute(HttpUtils.fnameParam, fname);
 			request.setAttribute(HttpUtils.lnameParam, lname);

@@ -1,6 +1,6 @@
-create database hrp_db;
+create database hdp_db;
 
-use hrp_db;  
+use hdp_db;  
 
 drop table login;
 
@@ -16,4 +16,4 @@ create table customers(emailid varchar(100) primary key, fname varchar(50),lname
 
 create table prediction(emailid varchar(100) primary key, age varchar(100), gender varchar(100), cig varchar(100), chol varchar(100), dia varchar(100), sys varchar(100), diab varchar(100), glu varchar(100), heartrate varchar(100), result varchar(100));
 
-create table otp(emailid varchar(100) primary key, random varchar(100), purpose varchar(100), status varchar(100), ts varchar(100));
+create table otp(otp_id int primary key auto_increment, emailid varchar(100), random varchar(100), status varchar(100), ts varchar(100));

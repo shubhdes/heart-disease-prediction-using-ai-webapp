@@ -97,7 +97,7 @@
                     
                 }
             },
-            txtanswer: {
+            txtanswer0: {
                 validators: {
                     notEmpty: {
                         message: 'The answer value is required'
@@ -142,7 +142,7 @@
                         <input type="text" class="form-control" name="txtsecretquestion" id="txtsecretquestion" placeholder="Enter secret question" >
                     </div>
                      <div class="form-group">
-                        <input type="text" class="form-control" name="txtanswer0" id="txtanswer" placeholder="Enter answer" >
+                        <input type="text" class="form-control" name="txtanswer0" id="txtanswer0" placeholder="Enter answer" >
                     </div>                   
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-danger" id="register" style=";font-weight: bolder;">Save changes</button>

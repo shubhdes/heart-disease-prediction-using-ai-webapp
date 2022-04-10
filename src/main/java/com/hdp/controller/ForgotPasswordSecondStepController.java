@@ -63,6 +63,21 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
+			}
+			if (ProcessStatus.FORGOT_PASSWORD_OTP_EXPIRED == processVO.getProcessStatus()) {
+				// otp mismatched
+				request.setAttribute("errormsg",
+						"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Expired OTP. Please try again.</div>");
+				request.setAttribute(HttpUtils.userIdParam, userId);
+				request.setAttribute(HttpUtils.otp0Param, param0);
+				request.setAttribute(HttpUtils.optionParam, "otp");
+				request.setAttribute("div2", "hidden");
+				request.setAttribute("autofocus", "autofocus");
+
+				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword1.jsp");
+				// redirect to forgot password page
+				rqsDispatcher.forward(request, response);
+
 			} else if (ProcessStatus.FORGOT_PASSWORD_OTP_MATCHED == processVO.getProcessStatus()) {
 				// otp matched
 				request.setAttribute(HttpUtils.userIdParam, userId);

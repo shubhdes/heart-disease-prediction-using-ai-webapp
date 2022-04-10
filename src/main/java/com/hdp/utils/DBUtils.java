@@ -16,6 +16,7 @@ public abstract class DBUtils {
 	public static final String secretQuestion = "secret_question";
 	public static final String answer = "answer";
 
+	public static final String otpId = "otp_id";
 	public static final String random = "random";
 	public static final String status = "status";
 	public static final String ts = "ts";

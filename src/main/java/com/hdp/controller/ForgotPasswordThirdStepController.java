@@ -49,7 +49,7 @@ public class ForgotPasswordThirdStepController extends CommonController {
 		if (ProcessStatus.PASSWORD_MISMATCHED == processVO.getProcessStatus()) {
 			// password mismatched
 			request.setAttribute("errormsg",
-					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Password and confirm password do not match</div>");
+					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Password and confirm password do not match.</div>");
 			request.setAttribute("autofocus", "autofocus");
 
 			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
@@ -60,7 +60,7 @@ public class ForgotPasswordThirdStepController extends CommonController {
 			// password rested
 			request.setAttribute("disabled", "disabled");
 			request.setAttribute("errormsg",
-					"<div class='alert alert-success' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Password changed successfully <a href='home.jsp'> Click here</a> to go to login page</div>");
+					"<div class='alert alert-success' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Password changed successfully <a href='jsp/home.jsp'> Click here</a> to go to login page.</div>");
 
 			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
 			// redirect to forgot password page

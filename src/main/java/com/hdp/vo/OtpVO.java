@@ -16,11 +16,13 @@ import lombok.ToString;
 @ToString
 public class OtpVO {
 
+	private long otpId;
+
 	private String emailId;
 
 	private String random;
 
 	private String status;
 
-	private Long ts;
+	private long ts;
 }

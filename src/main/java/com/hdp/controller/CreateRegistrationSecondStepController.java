@@ -65,7 +65,26 @@ public class CreateRegistrationSecondStepController extends CommonController {
 			request.setAttribute(HttpUtils.passwordParam, password);
 			request.setAttribute(HttpUtils.otp0Param, otp0);
 			request.setAttribute("errormsg",
-					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Invalid OTP. Please enter again</div>");
+					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Invalid OTP. Please enter again.</div>");
+			request.setAttribute("autofocus", "autofocus");
+
+			// redirect to login page
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/newuser1.jsp");
+			rd.forward(request, response);
+
+		}
+		if (ProcessStatus.NEW_USER_OTP_EXPIRED == processVO.getProcessStatus()) {
+			// otp mismatch
+			request.setAttribute(HttpUtils.fnameParam, fname);
+			request.setAttribute(HttpUtils.lnameParam, lname);
+			request.setAttribute(HttpUtils.mobileParam, mobile);
+			request.setAttribute(HttpUtils.emailIdParam, emailId);
+			request.setAttribute(HttpUtils.secretQuestionParam, secretQuestion);
+			request.setAttribute(HttpUtils.answer0Param, answer);
+			request.setAttribute(HttpUtils.passwordParam, password);
+			request.setAttribute(HttpUtils.otp0Param, otp0);
+			request.setAttribute("errormsg",
+					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Expired OTP. Please try again.</div>");
 			request.setAttribute("autofocus", "autofocus");
 
 			// redirect to login page

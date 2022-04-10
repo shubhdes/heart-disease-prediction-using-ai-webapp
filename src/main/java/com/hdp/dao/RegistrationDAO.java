@@ -17,11 +17,11 @@ public class RegistrationDAO {
 
 	private static final Logger logger = LogManager.getLogger(RegistrationDAO.class);
 
-	private static final String newUserQuery = "INSERT INTO customers VALUES (TRIM(?), TRIM(?), TRIM(?), TRIM(?), TRIM(?), TRIM(?))";
+	private static final String newUserQuery = "INSERT INTO customers (emailid, fname, lname, mobile, secret_question, answer) VALUES (TRIM(?), TRIM(?), TRIM(?), TRIM(?), TRIM(?), TRIM(?))";
 
 	private static final String updateUserQuery = "UPDATE customers SET fname=TRIM(?), lname=TRIM(?), mobile=TRIM(?), secret_question=TRIM(?), answer=TRIM(?) WHERE emailid=TRIM(?)";
 
-	private static final String existingUserQuery = "SELECT * FROM customers WHERE customers.emailid=TRIM(?)";
+	private static final String existingUserQuery = "SELECT * FROM customers WHERE emailid=TRIM(?)";
 
 	public void newUser(final CustomerVO customerVO) throws SQLException {
 		// pull connection from pool
@@ -29,9 +29,9 @@ public class RegistrationDAO {
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(newUserQuery);
-			prepStat.setString(1, customerVO.getFname());
-			prepStat.setString(2, customerVO.getLname());
-			prepStat.setString(3, customerVO.getEmailId());
+			prepStat.setString(1, customerVO.getEmailId());
+			prepStat.setString(2, customerVO.getFname());
+			prepStat.setString(3, customerVO.getLname());
 			prepStat.setString(4, customerVO.getMobile());
 			prepStat.setString(5, customerVO.getSecretQuestion());
 			prepStat.setString(6, customerVO.getAnswer());

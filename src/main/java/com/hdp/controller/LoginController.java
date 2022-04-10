@@ -58,7 +58,7 @@ public class LoginController extends CommonController {
 		} else if (ProcessStatus.AUTH_FAILED == processVO.getProcessStatus()) {
 			// user does not exist
 			request.setAttribute("msg",
-					"<div class='alert alert-danger' style='height:50px;background-color:white;font-weight:bolder;border:none'>Invalid Credentials</div>");
+					"<div class='alert alert-danger' style='height:50px;background-color:white;font-weight:bolder;border:none'>Invalid Credentials.</div>");
 
 			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/newuser.jsp");
 			// redirect to login page

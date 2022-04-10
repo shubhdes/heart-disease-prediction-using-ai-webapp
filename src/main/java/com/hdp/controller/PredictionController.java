@@ -64,8 +64,8 @@ public class PredictionController extends CommonController {
 			// prediction completed
 
 			String msg1 = Double.valueOf(processVO.getProcessAttributes().get(HttpUtils.predictParam).toString()) == 1
-					? "<div class='alert alert-danger' style='text-align: center;'>Danger Zone</div>"
-					: "<div class='alert alert-success' style='text-align: center;'>Safe Zone</div>";
+					? "<div class='alert alert-danger' style='text-align: center;'>Danger Zone!!</div>"
+					: "<div class='alert alert-success' style='text-align: center;'>Safe Zone!!</div>";
 			request.setAttribute("msg", msg1);
 
 			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/output.jsp");

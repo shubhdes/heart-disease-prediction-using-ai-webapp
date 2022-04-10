@@ -144,9 +144,12 @@ public class LoginService {
 				// auth using otp
 				logger.info("Forgot password request authentication using otp");
 
-				if (!param0.equalsIgnoreCase(param1)) {
+				final ProcessStatus otpProcessStatus = otpService.findForgotPasswordOTP(userId, param1);
+
+				if (ProcessStatus.FORGOT_PASSWORD_OTP_MATCHED != otpProcessStatus) {
+					// otp does not match
 					logger.info("Forgot password request authentication otp mismatched");
-					return new ProcessVO(ProcessStatus.FORGOT_PASSWORD_OTP_MISMATCHED, Collections.emptyMap());
+					return new ProcessVO(otpProcessStatus, Collections.emptyMap());
 				}
 
 				logger.info("Forgot password request authentication otp matched");

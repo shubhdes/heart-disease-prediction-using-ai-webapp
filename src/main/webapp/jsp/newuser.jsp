@@ -117,7 +117,7 @@
                     
                 }
             },
-            txtanswer: {
+            txtanswer0: {
                 validators: {
                     notEmpty: {
                         message: 'The answer value is required'
