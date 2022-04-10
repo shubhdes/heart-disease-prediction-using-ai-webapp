@@ -40,13 +40,13 @@ public class UpdatePasswordController extends CommonController {
 		final String newpassword = request.getParameter(HttpUtils.newPasswordParam).trim();
 
 		final HttpSession session = request.getSession(false);
-		final String username = session.getAttribute(HttpUtils.userIdParam).toString();
+		final String userId = session.getAttribute(HttpUtils.userIdParam).toString();
 
-		logger.info("Request parameters username:" + username + " oldpassword:" + oldpassword + " newpassword:"
-				+ newpassword);
+		logger.info(
+				"Request parameters userId:" + userId + " oldpassword:" + oldpassword + " newpassword:" + newpassword);
 
 		// change password
-		ProcessVO processVO = this.loginService.passwordChange(username, oldpassword, newpassword);
+		ProcessVO processVO = this.loginService.passwordChange(userId, oldpassword, newpassword);
 
 		logger.info("Result returned from service:" + processVO);
 

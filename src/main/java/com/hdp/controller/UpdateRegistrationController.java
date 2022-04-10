@@ -43,14 +43,13 @@ public class UpdateRegistrationController extends CommonController {
 		final String answer = request.getParameter(HttpUtils.answer0Param).trim();
 
 		final HttpSession session = request.getSession(false);
-		final String username = session.getAttribute(HttpUtils.userIdParam).toString();
+		final String emailId = session.getAttribute(HttpUtils.userIdParam).toString();
 
-		logger.info("Request parameters username:" + username + " fname:" + fname + " lname:" + lname + " mobile:"
+		logger.info("Request parameters emailId:" + emailId + " fname:" + fname + " lname:" + lname + " mobile:"
 				+ mobile + " secretQuestion:" + secretQuestion + " answer:" + answer);
 
 		// update registration
-		ProcessVO processVO = this.registrationService.upateUser(fname, lname, username, mobile, secretQuestion,
-				answer);
+		ProcessVO processVO = this.registrationService.upateUser(fname, lname, emailId, mobile, secretQuestion, answer);
 
 		logger.info("Result returned from service:" + processVO);
 

@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import com.hdp.utils.DBConnectionUtils;
 import com.hdp.utils.DBUtils;
 import com.hdp.vo.CustomerVO;
+import com.hdp.vo.LoginVO;
 
 public class LoginDAO {
 
@@ -25,16 +26,16 @@ public class LoginDAO {
 
 	private static final String passwordChangeQuery = "UPDATE login SET login.password=TRIM(?) WHERE login.userid=TRIM(?)";
 
-	public Optional<CustomerVO> auth(final String username, final String password) throws SQLException {
+	public Optional<CustomerVO> auth(final LoginVO loginVO) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(loginQuery);
-			prepStat.setString(1, username);
-			prepStat.setString(2, password);
+			prepStat.setString(1, loginVO.getUserId());
+			prepStat.setString(2, loginVO.getPassword());
 
-			logger.info("SQL loginQuery:" + loginQuery + " parameters username:" + username + " password:" + password);
+			logger.info("SQL loginQuery:" + loginQuery + " parameters" + loginVO);
 
 			ResultSet result = prepStat.executeQuery();
 			if (!result.next()) {
@@ -54,15 +55,15 @@ public class LoginDAO {
 		}
 	}
 
-	public Optional<CustomerVO> userExists(final String username) throws SQLException {
+	public Optional<CustomerVO> userExists(final String userId) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(userExists);
-			prepStat.setString(1, username);
+			prepStat.setString(1, userId);
 
-			logger.info("SQL userExists:" + userExists + " parameters username:" + username);
+			logger.info("SQL userExists:" + userExists + " parameters userId:" + userId);
 
 			ResultSet result = prepStat.executeQuery();
 			if (!result.next()) {
@@ -82,17 +83,16 @@ public class LoginDAO {
 		}
 	}
 
-	public void newUser(final String username, final String password) throws SQLException {
+	public void newUser(final LoginVO loginVO) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(newUserQuery);
-			prepStat.setString(1, username);
-			prepStat.setString(2, password);
+			prepStat.setString(1, loginVO.getUserId());
+			prepStat.setString(2, loginVO.getPassword());
 
-			logger.info(
-					"SQL newUserQuery:" + newUserQuery + " parameters username:" + username + " password:" + password);
+			logger.info("SQL newUserQuery:" + newUserQuery + " parameters " + loginVO);
 
 			prepStat.executeUpdate();
 		} finally {
@@ -103,18 +103,16 @@ public class LoginDAO {
 		}
 	}
 
-	public void passwordChange(final String username, final String password) throws SQLException {
+	public void passwordChange(final LoginVO loginVO) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(passwordChangeQuery);
-			prepStat.setString(1, password);
-			prepStat.setString(2, username);
+			prepStat.setString(1, loginVO.getPassword());
+			prepStat.setString(2, loginVO.getUserId());
 
-			logger.info("SQL passwordChangeQuery:" + passwordChangeQuery + " parameters username:" + username
-					+ " password:" + password);
-
+			logger.info("SQL passwordChangeQuery:" + passwordChangeQuery + " parameters " + loginVO);
 			prepStat.executeUpdate();
 		} finally {
 			// closing resources

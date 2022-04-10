@@ -34,7 +34,7 @@ public abstract class MailingUtils {
 	public static final String mailSmtpHost = "mail.smtp.host";
 	public static final String mailSmtpPort = "mail.smtp.port";
 
-	public static final String username = "username";
+	public static final String userId = "userId";
 	public static final String password = "password";
 
 	// email configs
@@ -68,7 +68,7 @@ public abstract class MailingUtils {
 		Session session = Session.getInstance(serverConfigs, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(emailProperties.getProperty(username).toString(),
+				return new PasswordAuthentication(emailProperties.getProperty(userId).toString(),
 						emailProperties.getProperty(password).toString());
 			}
 		});
@@ -78,21 +78,21 @@ public abstract class MailingUtils {
 	public static void registrationEmail(final String[] msgParams, final String toEmailId)
 			throws AddressException, MessagingException {
 		//
-		email(emailProperties.getProperty(username), toEmailId, emailProperties.getProperty(registrationSubject),
+		email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(registrationSubject),
 				MessageFormat.format(emailProperties.getProperty(registrationBody), msgParams));
 	}
 
 	public static void forgotPasswordEmail(final String[] msgParams, final String toEmailId)
 			throws AddressException, MessagingException {
 		//
-		email(emailProperties.getProperty(username), toEmailId, emailProperties.getProperty(forgotPasswordSubject),
+		email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(forgotPasswordSubject),
 				MessageFormat.format(emailProperties.getProperty(forgotPasswordBody), msgParams));
 	}
 
 	public static void predictionEmail(final String[] msgParams, final String toEmailId)
 			throws AddressException, MessagingException {
 		//
-		email(emailProperties.getProperty(username), toEmailId, emailProperties.getProperty(predictionSubject),
+		email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(predictionSubject),
 				MessageFormat.format(emailProperties.getProperty(predictionBody), msgParams));
 	}
 

@@ -35,12 +35,12 @@ public class FetchRegistration extends CommonController {
 	public void doService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// read request parameters
-		final String username = request.getParameter(HttpUtils.emailIdParam);
+		final String emailId = request.getParameter(HttpUtils.emailIdParam);
 
-		logger.info("Request parameters username:" + username);
+		logger.info("Request parameters emailId:" + emailId);
 
 		// fetch registration
-		final ProcessVO processVO = this.registrationService.existingUser(username);
+		final ProcessVO processVO = this.registrationService.existingUser(emailId);
 
 		logger.info("Result returned from service:" + processVO);
 

@@ -39,7 +39,7 @@
                 validators: {
                     notEmpty: {},
                     digits: {},
-                    greaterThan:{value:-1,message:'Please enter value greter than or equal to 0'},
+                    greaterThan:{value:-1,message:'Please enter value greater than or equal to 0'},
                     lessThan:{value:100,message:'Value should be less or equal to 100'}
                 }
             },
@@ -48,7 +48,7 @@
                 validators: {
                     notEmpty: {},
                     digits: {},
-                    greaterThan:{value:124,message:'Please enter value greter than or equal to 125'},
+                    greaterThan:{value:124,message:'Please enter value greater than or equal to 125'},
                     lessThan:{value:566,message:'Value should be less or equal to 565'}
                 }
             },
@@ -57,7 +57,7 @@
                 validators: {
                     notEmpty: {},
                     digits: {},
-                    greaterThan:{value:39,message:'Please enter value greter than or equal to 40'},
+                    greaterThan:{value:39,message:'Please enter value greater than or equal to 40'},
                     lessThan:{value:201,message:'Value should be less or equal to 200'}
                 }
             },
@@ -66,7 +66,7 @@
                 validators: {
                     notEmpty: {},
                     digits: {},
-                    greaterThan:{value:81,message:'Please enter value greter than or equal to 80'},
+                    greaterThan:{value:81,message:'Please enter value greater than or equal to 80'},
                     lessThan:{value:201,message:'Value should be less or equal to 200'}
                 }
             },
@@ -75,7 +75,7 @@
                 validators: {
                     notEmpty: {},
                     digits: {},
-                    greaterThan:{value:71,message:'Please enter value greter than or equal to 70'},
+                    greaterThan:{value:71,message:'Please enter value greater than or equal to 70'},
                     lessThan:{value:201,message:'Value should be less or equal to 200'}
                 }
             },

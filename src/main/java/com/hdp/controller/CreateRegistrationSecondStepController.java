@@ -54,7 +54,7 @@ public class CreateRegistrationSecondStepController extends CommonController {
 
 		logger.info("Result returned from service:" + processVO);
 
-		if (ProcessStatus.OTP_MISMATCHED == processVO.getProcessStatus()) {
+		if (ProcessStatus.NEW_USER_OTP_MISMATCHED == processVO.getProcessStatus()) {
 			// otp mismatch
 			request.setAttribute(HttpUtils.fnameParam, fname);
 			request.setAttribute(HttpUtils.lnameParam, lname);

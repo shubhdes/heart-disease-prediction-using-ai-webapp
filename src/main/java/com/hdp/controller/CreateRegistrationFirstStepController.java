@@ -63,7 +63,7 @@ public class CreateRegistrationFirstStepController extends CommonController {
 			// redirect to registration page
 			rqstDispatcher.forward(request, response);
 
-		} else if (ProcessStatus.OTP_SENT == processVO.getProcessStatus()) {
+		} else if (ProcessStatus.NEW_USER_OTP_SENT == processVO.getProcessStatus()) {
 			// user does not exist
 
 			request.setAttribute("errormsg",

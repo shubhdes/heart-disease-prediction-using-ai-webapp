@@ -35,12 +35,12 @@ public class ForgotPasswordFirstStepController extends CommonController {
 	public void doService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// read request parameters
-		final String username = request.getParameter(HttpUtils.userIdParam).trim();
+		final String userId = request.getParameter(HttpUtils.userIdParam).trim();
 		final String option = request.getParameter(HttpUtils.optionParam).trim();
 
-		logger.info("Request parameters username:" + username + " option:" + option);
+		logger.info("Request parameters userId:" + userId + " option:" + option);
 
-		final ProcessVO processVO = loginService.forgotPassword1(username, option);
+		final ProcessVO processVO = loginService.forgotPassword1(userId, option);
 
 		logger.info("Result returned from service:" + processVO);
 
@@ -54,11 +54,11 @@ public class ForgotPasswordFirstStepController extends CommonController {
 			// redirect to forgot password page
 			rqsDispatcher.forward(request, response);
 
-		} else if (ProcessStatus.OTP_SENT == processVO.getProcessStatus()) {
+		} else if (ProcessStatus.FORGOT_PASSWORD_OTP_SENT == processVO.getProcessStatus()) {
 			// auth using otp
 			request.setAttribute(HttpUtils.otp0Param,
 					processVO.getProcessAttributes().get(HttpUtils.otp0Param).toString());
-			request.setAttribute(HttpUtils.userIdParam, username);
+			request.setAttribute(HttpUtils.userIdParam, userId);
 			request.setAttribute(HttpUtils.optionParam, "otp");
 			request.setAttribute("div2", "hidden");
 			request.setAttribute("m", "Enter the OTP sent to your registered emailid");
@@ -71,7 +71,7 @@ public class ForgotPasswordFirstStepController extends CommonController {
 			// auth using secret question
 			request.setAttribute(HttpUtils.secretQuestionParam,
 					processVO.getProcessAttributes().get(HttpUtils.secretQuestionParam).toString());
-			request.setAttribute(HttpUtils.userIdParam, username);
+			request.setAttribute(HttpUtils.userIdParam, userId);
 			request.setAttribute(HttpUtils.optionParam, "secret");
 			request.setAttribute("div1", "hidden");
 

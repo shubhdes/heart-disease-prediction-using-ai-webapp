@@ -47,15 +47,15 @@ public class PredictionController extends CommonController {
 		final String heartrate = request.getParameter(HttpUtils.heartRateParam).trim();
 
 		final HttpSession session = request.getSession(false);
-		final String username = session.getAttribute(HttpUtils.userIdParam).toString();
+		final String emailId = session.getAttribute(HttpUtils.userIdParam).toString();
 
-		logger.info("Request parameters username:" + username + " age:" + age + " gender:" + gender + " cig:" + cig
+		logger.info("Request parameters emailId:" + emailId + " age:" + age + " gender:" + gender + " cig:" + cig
 				+ " chol:" + chol + " dia:" + dia + " sys:" + sys + " diab:" + diab + " glu:" + glu + " heartrate:"
 				+ heartrate);
 
 		final String fname = session.getAttribute(HttpUtils.fnameParam).toString();
 		// predict result
-		final ProcessVO processVO = this.predictionService.predict(fname, username, age, gender, cig, chol, dia, sys,
+		final ProcessVO processVO = this.predictionService.predict(fname, emailId, age, gender, cig, chol, dia, sys,
 				diab, glu, heartrate);
 
 		logger.info("Result returned from service:" + processVO);

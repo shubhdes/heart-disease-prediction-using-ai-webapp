@@ -36,20 +36,20 @@ public class LoginController extends CommonController {
 	public void doService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// read request parameters
-		String username = request.getParameter(HttpUtils.userIdParam);
+		String userId = request.getParameter(HttpUtils.userIdParam);
 		String password = request.getParameter(HttpUtils.passwordParam);
 
-		logger.info("Request parameters username:" + username + " password:" + password);
+		logger.info("Request parameters userId:" + userId + " password:" + password);
 
 		// authenticate user
-		ProcessVO processVO = this.loginService.auth(username, password);
+		ProcessVO processVO = this.loginService.auth(userId, password);
 
 		logger.info("Result returned from service:" + processVO);
 
 		if (ProcessStatus.AUTH_SUCCESS == processVO.getProcessStatus()) {
 			// user does exit
 			final HttpSession session = request.getSession(true);
-			session.setAttribute(HttpUtils.userIdParam, username);
+			session.setAttribute(HttpUtils.userIdParam, userId);
 			session.setAttribute(HttpUtils.fnameParam, processVO.getProcessAttributes().get(HttpUtils.fnameParam));
 
 			// redirect to home page

@@ -23,23 +23,20 @@ public class RegistrationDAO {
 
 	private static final String existingUserQuery = "SELECT * FROM customers WHERE customers.emailid=TRIM(?)";
 
-	public void newUser(final String fname, final String lname, final String emailId, final String mobile,
-			final String secretQuestion, final String answer) throws SQLException {
+	public void newUser(final CustomerVO customerVO) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(newUserQuery);
-			prepStat.setString(1, fname);
-			prepStat.setString(2, lname);
-			prepStat.setString(3, emailId);
-			prepStat.setString(4, mobile);
-			prepStat.setString(5, secretQuestion);
-			prepStat.setString(6, answer);
+			prepStat.setString(1, customerVO.getFname());
+			prepStat.setString(2, customerVO.getLname());
+			prepStat.setString(3, customerVO.getEmailId());
+			prepStat.setString(4, customerVO.getMobile());
+			prepStat.setString(5, customerVO.getSecretQuestion());
+			prepStat.setString(6, customerVO.getAnswer());
 
-			logger.info("SQL newUserQuery:" + newUserQuery + " parameters fname:" + fname + " lname:" + lname
-					+ " emailId:" + emailId + " mobile:" + mobile + " secretQuestion:" + secretQuestion + " answer:"
-					+ answer);
+			logger.info("SQL newUserQuery:" + newUserQuery + " parameters " + customerVO);
 
 			prepStat.executeUpdate();
 		} finally {
@@ -50,23 +47,20 @@ public class RegistrationDAO {
 		}
 	}
 
-	public void upateUser(final String fname, final String lname, final String emailId, final String mobile,
-			final String secretQuestion, final String answer) throws SQLException {
+	public void upateUser(final CustomerVO customerVO) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(updateUserQuery);
-			prepStat.setString(1, fname);
-			prepStat.setString(2, lname);
-			prepStat.setString(3, mobile);
-			prepStat.setString(4, secretQuestion);
-			prepStat.setString(5, answer);
-			prepStat.setString(6, emailId);
+			prepStat.setString(1, customerVO.getFname());
+			prepStat.setString(2, customerVO.getLname());
+			prepStat.setString(3, customerVO.getMobile());
+			prepStat.setString(4, customerVO.getSecretQuestion());
+			prepStat.setString(5, customerVO.getAnswer());
+			prepStat.setString(6, customerVO.getEmailId());
 
-			logger.info("SQL newUserQuery:" + updateUserQuery + " parameters fname:" + fname + " lname:" + lname
-					+ " mobile:" + mobile + " secretQuestion:" + secretQuestion + " answer:" + answer + " emailId:"
-					+ emailId);
+			logger.info("SQL newUserQuery:" + updateUserQuery + " parameters " + customerVO);
 
 			prepStat.executeUpdate();
 		} finally {
@@ -77,15 +71,15 @@ public class RegistrationDAO {
 		}
 	}
 
-	public Optional<CustomerVO> existingUser(final String username) throws SQLException {
+	public Optional<CustomerVO> existingUser(final String emailId) throws SQLException {
 		// pull connection from pool
 		final Connection connection = DBConnectionUtils.connection();
 		PreparedStatement prepStat = null;
 		try {
 			prepStat = connection.prepareStatement(existingUserQuery);
-			prepStat.setString(1, username);
+			prepStat.setString(1, emailId);
 
-			logger.info("SQL existingUserQuery:" + existingUserQuery + " parameters username:" + username);
+			logger.info("SQL existingUserQuery:" + existingUserQuery + " parameters emailId:" + emailId);
 
 			ResultSet result = prepStat.executeQuery();
 			if (!result.next()) {

@@ -35,14 +35,14 @@ public class ForgotPasswordThirdStepController extends CommonController {
 	public void doService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// read request parameters
-		final String username = request.getParameter(HttpUtils.userIdParam).trim();
+		final String userId = request.getParameter(HttpUtils.userIdParam).trim();
 		final String password0 = request.getParameter(HttpUtils.passwordParam).trim();
 		final String password1 = request.getParameter(HttpUtils.confirmPasswordParam).trim();
 
-		logger.info("Request parameters username:" + username + " password0:" + password0 + " password1:" + password1);
+		logger.info("Request parameters userId:" + userId + " password0:" + password0 + " password1:" + password1);
 
 		// reset password
-		final ProcessVO processVO = this.loginService.forgotPassword3(username, password0, password1);
+		final ProcessVO processVO = this.loginService.forgotPassword3(userId, password0, password1);
 
 		logger.info("Result returned from service:" + processVO);
 

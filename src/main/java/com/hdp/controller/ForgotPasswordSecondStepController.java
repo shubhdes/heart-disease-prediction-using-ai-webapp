@@ -35,25 +35,25 @@ public class ForgotPasswordSecondStepController extends CommonController {
 	public void doService(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// read request parameters
-		final String username = request.getParameter(HttpUtils.userIdParam);
+		final String userId = request.getParameter(HttpUtils.userIdParam);
 		final String option = request.getParameter(HttpUtils.optionParam);
 
-		logger.info("Request parameters username:" + username + " option:" + option);
+		logger.info("Request parameters userId:" + userId + " option:" + option);
 
 		if ("otp".equalsIgnoreCase(option)) {
 			final String param0 = request.getParameter(HttpUtils.otp0Param).trim();
 			final String param1 = request.getParameter(HttpUtils.otp1Param).trim();
 
 			// auth using otp
-			final ProcessVO processVO = this.loginService.forgotPassword2(username, option, param0, param1);
+			final ProcessVO processVO = this.loginService.forgotPassword2(userId, option, param0, param1);
 
 			logger.info("Result returned from service:" + processVO);
 
-			if (ProcessStatus.OTP_MISMATCHED == processVO.getProcessStatus()) {
+			if (ProcessStatus.FORGOT_PASSWORD_OTP_MISMATCHED == processVO.getProcessStatus()) {
 				// otp mismatched
 				request.setAttribute("errormsg",
 						"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>OTP value does not match.Please try again.</div>");
-				request.setAttribute(HttpUtils.userIdParam, username);
+				request.setAttribute(HttpUtils.userIdParam, userId);
 				request.setAttribute(HttpUtils.otp0Param, param0);
 				request.setAttribute(HttpUtils.optionParam, "otp");
 				request.setAttribute("div2", "hidden");
@@ -63,9 +63,9 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
-			} else if (ProcessStatus.OTP_MATCHED == processVO.getProcessStatus()) {
+			} else if (ProcessStatus.FORGOT_PASSWORD_OTP_MATCHED == processVO.getProcessStatus()) {
 				// otp matched
-				request.setAttribute(HttpUtils.userIdParam, username);
+				request.setAttribute(HttpUtils.userIdParam, userId);
 
 				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
 				// redirect to forgot password page
@@ -82,7 +82,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 			final String param1 = request.getParameter(HttpUtils.answer1Param).trim();
 
 			// auth using otp
-			final ProcessVO processVO = this.loginService.forgotPassword2(username, option, param0, param1);
+			final ProcessVO processVO = this.loginService.forgotPassword2(userId, option, param0, param1);
 
 			logger.info("Result returned from service:" + processVO);
 
@@ -90,7 +90,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				// answer mismatched
 				request.setAttribute("errormsg",
 						"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>OTP value does not match.Please try again.</div>");
-				request.setAttribute(HttpUtils.userIdParam, username);
+				request.setAttribute(HttpUtils.userIdParam, userId);
 				request.setAttribute(HttpUtils.secretQuestionParam, secretQuestion);
 				request.setAttribute(HttpUtils.answer0Param, param0);
 				request.setAttribute(HttpUtils.optionParam, "secret");
@@ -103,7 +103,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 
 			} else if (ProcessStatus.ANSWER_MATCHED == processVO.getProcessStatus()) {
 				// answer matched
-				request.setAttribute(HttpUtils.userIdParam, username);
+				request.setAttribute(HttpUtils.userIdParam, userId);
 
 				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
 				// redirect to forgot password page
