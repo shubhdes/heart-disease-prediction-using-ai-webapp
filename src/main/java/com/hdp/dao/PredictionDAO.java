@@ -14,7 +14,7 @@ public class PredictionDAO {
 
 	private static final Logger logger = LogManager.getLogger(PredictionDAO.class);
 
-	private static final String newPredictionQuery = "INSERT INTO prediction (emailid, age, gender, cig, chol, dia, sys, diab, glu, heartrate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	private static final String newPredictionQuery = "INSERT INTO prediction (emailid, age, gender, cig, chol, dia, sys, diab, glu, heartrate, result) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 	public void newPrediction(final PredictionVO predictionVO) throws SQLException {
 		// pull connection from pool
@@ -32,6 +32,7 @@ public class PredictionDAO {
 			prepStat.setString(8, predictionVO.getDiab());
 			prepStat.setString(9, predictionVO.getGlu());
 			prepStat.setString(10, predictionVO.getHeartrate());
+			prepStat.setString(11, predictionVO.getResult());
 
 			logger.info("SQL newPrediction:" + newPredictionQuery + " parameters " + predictionVO);
 

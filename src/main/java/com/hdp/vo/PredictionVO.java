@@ -35,4 +35,6 @@ public class PredictionVO {
 	private String glu;
 
 	private String heartrate;
+
+	private String result;
 }

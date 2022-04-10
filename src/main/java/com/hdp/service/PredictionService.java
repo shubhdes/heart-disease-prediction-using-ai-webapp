@@ -40,7 +40,7 @@ public class PredictionService {
 
 			// save prediction
 			final PredictionVO predictionVO = new PredictionVO(emailId, age, gender, cig, chol, dia, sys, diab, glu,
-					heartrate);
+					heartrate, String.valueOf(predictionClass));
 			predictionDAO.newPrediction(predictionVO);
 
 			// send prediction report email
