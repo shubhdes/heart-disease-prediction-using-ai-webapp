@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.hdp.utils.DBConnectionUtils;
 import com.hdp.utils.MailingUtils;
+import com.hdp.utils.OtpUtils;
 import com.hdp.utils.PredictionUtils;
 
 public class CommonListener implements ServletContextListener {
@@ -28,10 +29,15 @@ public class CommonListener implements ServletContextListener {
 			MailingUtils.load(context.getServletContext().getRealPath(""));
 			logger.info("Loading mail configurations completed");
 
-			// http config loading
+			// prediction config loading
 			logger.info("Loading prediction configurations started");
 			PredictionUtils.load(context.getServletContext().getRealPath(""));
 			logger.info("Loading prediction configurations completed");
+
+			// otp config loading
+			logger.info("Loading otp configurations started");
+			OtpUtils.load(context.getServletContext().getRealPath(""));
+			logger.info("Loading otp configurations completed");
 
 		} catch (Exception ex) {
 			// exception handling

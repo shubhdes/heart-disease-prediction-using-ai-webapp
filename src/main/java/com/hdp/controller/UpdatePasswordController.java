@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.LoginService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -56,7 +57,7 @@ public class UpdatePasswordController extends CommonController {
 			request.setAttribute("m2", "<div style='color:red'>Error</div>");
 			request.setAttribute("msg", "$('#modal-msg').modal('show');");
 
-			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/changepassword.jsp");
+			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/edit_password.jsp");
 			// redirect to change password page
 			rqstDispatcher.forward(request, response);
 
@@ -66,12 +67,13 @@ public class UpdatePasswordController extends CommonController {
 			request.setAttribute("m2", "<div style='color:green'>Success</div>");
 			request.setAttribute("msg", "$('#modal-msg').modal('show');");
 
-			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/changepassword.jsp");
+			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/edit_password.jsp");
 			// redirect to change password page
 			rqstDispatcher.forward(request, response);
 
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

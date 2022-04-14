@@ -159,7 +159,7 @@ public class LoginService {
 			// auth using secret question
 			logger.info("Forgot password request authentication using secret question and answer");
 
-			if (!param0.equalsIgnoreCase(param1)) {
+			if (!customerVOOpt.get().getAnswer().equalsIgnoreCase(param1)) {
 				logger.info("Forgot password request authentication answer mismatched");
 				return new ProcessVO(ProcessStatus.ANSWER_MISMATCHED, Collections.emptyMap());
 			}

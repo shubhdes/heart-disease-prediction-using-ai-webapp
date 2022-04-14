@@ -187,28 +187,28 @@ $(document).ready(function() {
 
                   <form role="form" name="frmsignup" id="frmsignup" action="${pageContext.request.contextPath}/CreateRegistrationFirstStepController" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtfname" placeholder="Enter first name" value="${txtfname}">
+                        <input type="text" class="form-control" name="txtfname" placeholder="Enter First Name" value="${txtfname}">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtlname" placeholder="Enter last name"  value="${txtlname}">
+                        <input type="text" class="form-control" name="txtlname" placeholder="Enter Last Name"  value="${txtlname}">
                     </div>
                     <div class="form-group">
-                        <input type="email" class="form-control" name="txtemailid"  placeholder="Enter email id" ${autofocus}>
+                        <input type="email" class="form-control" name="txtemailid"  placeholder="Enter Email Id" ${autofocus}>
                     </div>
                     <div class="form-group">
-                        <input type="tel" class="form-control" name="txtmobile" placeholder="Enter mobile no" maxlength="10"  value="${txtmobile}">
+                        <input type="tel" class="form-control" name="txtmobile" placeholder="Enter Mobile" maxlength="10"  value="${txtmobile}">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="txtpassword" placeholder="Enter password" onCopy="return false" onPaste="return false">
+                        <input type="password" class="form-control" name="txtpassword" placeholder="Enter Password" onCopy="return false" onPaste="return false">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="txtconfirmpassword" placeholder="Enter confirm password" onCopy="return false" onPaste="return false">
+                        <input type="password" class="form-control" name="txtconfirmpassword" placeholder="Re-enter Password" onCopy="return false" onPaste="return false">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtsecretquestion" placeholder="Enter secret question" value="${txtsecretquestion}" >
+                        <input type="text" class="form-control" name="txtsecretquestion" placeholder="Enter Secret Question" value="${txtsecretquestion}" >
                     </div>
                      <div class="form-group">
-                        <input type="text" class="form-control" name="txtanswer0" placeholder="Enter answer"  value="${txtanswer0}">
+                        <input type="text" class="form-control" name="txtanswer0" placeholder="Enter Answer"  value="${txtanswer0}">
                     </div>                   
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-info" id="register" style="width:25%;font-weight: bolder;">Register</button>
@@ -225,7 +225,7 @@ $(document).ready(function() {
 
                   <form role="form" name="frmlogin" id="frmlogin" action="${pageContext.request.contextPath}/LoginController" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtuserid" placeholder="Enter UserID" value="${fname}">
+                        <input type="text" class="form-control" name="txtuserid" placeholder="Enter User Id" value="${fname}">
                     </div>
                    
                     <div class="form-group">
@@ -234,7 +234,7 @@ $(document).ready(function() {
                    
                     <div class="form-group ">
                         <button type="submit" class="btn btn-info" id="login" style=";font-weight: bolder;">Login</button>
-                        <a href="${pageContext.request.contextPath}/jsp/forgotpassword.jsp" style="float: right">Forgot Password</a>
+                        <a href="${pageContext.request.contextPath}/jsp/forgot_password.jsp" style="float: right">Forgot Password</a>
                     </div>
               </form>                            
             </div>

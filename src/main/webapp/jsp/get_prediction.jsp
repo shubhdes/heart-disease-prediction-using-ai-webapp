@@ -127,41 +127,41 @@
                     
                      <div class="form-group">
                           <label for="txtcigs">Smoking (cigarettes/day):</label>
-                        <input type="text" class="form-control" name="txtcigs" placeholder="Enter cigarettes    /day" maxlength="3"  value="${mobile}">
+                        <input type="text" class="form-control" name="txtcigs" placeholder="Enter Cigarettes/day" maxlength="3"  value="${mobile}">
                     </div>
                     
                      <div class="form-group">
                           <label for="txtchol">Enter cholesterol level:</label>
-                        <input type="text" class="form-control" name="txtchol" placeholder="Enter cholesterol" maxlength="3"  value="${mobile}">
+                        <input type="text" class="form-control" name="txtchol" placeholder="Enter Cholesterol" maxlength="3"  value="${mobile}">
                     </div>
                     
                     <div class="form-group">
                           <label for="txtdia">Enter diastolic BP level:</label>
-                        <input type="text" class="form-control" name="txtdia" placeholder="Enter diastolic BP level" maxlength="3"  value="${mobile}">
+                        <input type="text" class="form-control" name="txtdia" placeholder="Enter Diastolic BP level" maxlength="3"  value="${mobile}">
                     </div>
                     
                     <div class="form-group">
                           <label for="txtsys">Enter systolic BP level:</label>
-                        <input type="text" class="form-control" name="txtsys" placeholder="Enter systolic BP level" maxlength="3"  value="${mobile}">
+                        <input type="text" class="form-control" name="txtsys" placeholder="Enter Systolic BP level" maxlength="3"  value="${mobile}">
                     </div>  
                     
                     <div class="form-group">
                          <label for="txtdiab">Select Diabetes:</label>
                         <select class="form-control" name="txtdiab" id="txtdiab">
                                 <option selected="true">Select Diabetes</option>
-                                <option value="1">YES</option>
-                                <option value="0">NO</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
                                </select>
                             
                     </div>
                     
                     <div class="form-group">
                           <label for="txtglu">Enter Glucose level:</label>
-                        <input type="text" class="form-control" name="txtglu" placeholder="Enter Glucose level level" maxlength="3"  value="${mobile}">
+                        <input type="text" class="form-control" name="txtglu" placeholder="Enter Glucose level" maxlength="3"  value="${mobile}">
                     </div>  
                    <div class="form-group">
                           <label for="txtheartrate">Enter heart rate:</label>
-                        <input type="text" class="form-control" name="txtheartrate" placeholder="Enter heart rate" maxlength="3"  value="${mobile}">
+                        <input type="text" class="form-control" name="txtheartrate" placeholder="Enter Heart Rate" maxlength="3"  value="${mobile}">
                     </div>                    
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-info" id="register" style="width:25%;font-weight: bolder;">Submit</button>

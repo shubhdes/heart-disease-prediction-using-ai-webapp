@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.LoginService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -59,7 +60,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				request.setAttribute("div2", "hidden");
 				request.setAttribute("autofocus", "autofocus");
 
-				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword1.jsp");
+				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password_option.jsp");
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
@@ -74,7 +75,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				request.setAttribute("div2", "hidden");
 				request.setAttribute("autofocus", "autofocus");
 
-				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword1.jsp");
+				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password_option.jsp");
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
@@ -82,7 +83,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				// otp matched
 				request.setAttribute(HttpUtils.userIdParam, userId);
 
-				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
+				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/reset_password.jsp");
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
@@ -90,7 +91,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				// exception handling
 			}
 
-		} else if (option.equalsIgnoreCase("secret")) {
+		} else if ("secret".equalsIgnoreCase(option)) {
 
 			final String secretQuestion = request.getParameter(HttpUtils.secretQuestionParam).trim();
 			final String param0 = request.getParameter(HttpUtils.answer0Param).trim();
@@ -104,7 +105,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 			if (ProcessStatus.ANSWER_MISMATCHED == processVO.getProcessStatus()) {
 				// answer mismatched
 				request.setAttribute("errormsg",
-						"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>OTP value does not match.Please try again.</div>");
+						"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Answer value does not match. Please try again.</div>");
 				request.setAttribute(HttpUtils.userIdParam, userId);
 				request.setAttribute(HttpUtils.secretQuestionParam, secretQuestion);
 				request.setAttribute(HttpUtils.answer0Param, param0);
@@ -112,7 +113,7 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				request.setAttribute("div1", "hidden");
 				request.setAttribute("autofocus", "autofocus");
 
-				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
+				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password_option.jsp");
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
@@ -120,14 +121,14 @@ public class ForgotPasswordSecondStepController extends CommonController {
 				// answer matched
 				request.setAttribute(HttpUtils.userIdParam, userId);
 
-				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
+				RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/reset_password.jsp");
 				// redirect to forgot password page
 				rqsDispatcher.forward(request, response);
 
 			} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 				// exception handling
+				ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 			}
-
 		}
 	}
 }

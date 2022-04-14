@@ -9,6 +9,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.hdp.dao.OtpDAO;
 import com.hdp.utils.CommonUtils;
+import com.hdp.utils.OtpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.OtpVO;
 
@@ -97,7 +98,8 @@ public class OtpService {
 			// otp mismatch
 			return ProcessStatus.FORGOT_PASSWORD_OTP_MISMATCHED;
 		}
-		if (TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - Long.valueOf(otpVOOpt.get().getTs())) > 300) {
+		if (TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis() - Long.valueOf(otpVOOpt.get().getTs())) > Long
+				.valueOf(OtpUtils.config(OtpUtils.timeoutInterval))) {
 			// otp mismatch
 			return ProcessStatus.FORGOT_PASSWORD_OTP_EXPIRED;
 		}

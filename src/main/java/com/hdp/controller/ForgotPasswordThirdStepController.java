@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.LoginService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -52,7 +53,7 @@ public class ForgotPasswordThirdStepController extends CommonController {
 					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Password and confirm password do not match.</div>");
 			request.setAttribute("autofocus", "autofocus");
 
-			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
+			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/reset_password.jsp");
 			// redirect to forgot password page
 			rqstDispatcher.forward(request, response);
 
@@ -62,12 +63,13 @@ public class ForgotPasswordThirdStepController extends CommonController {
 			request.setAttribute("errormsg",
 					"<div class='alert alert-success' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>Password changed successfully <a href='jsp/home.jsp'> Click here</a> to go to login page.</div>");
 
-			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/forgotpassword2.jsp");
+			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/reset_password.jsp");
 			// redirect to forgot password page
 			rqstDispatcher.forward(request, response);
 
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

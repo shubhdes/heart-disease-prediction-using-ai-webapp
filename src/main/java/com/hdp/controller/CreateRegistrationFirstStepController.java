@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.RegistrationService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -58,7 +59,7 @@ public class CreateRegistrationFirstStepController extends CommonController {
 					"<div class='alert alert-danger' style='height:70px;text-align:center'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>The specified email id is already registered with us.Try using a different one.</div>");
 			request.setAttribute("autofocus", "autofocus");
 
-			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/newuser.jsp");
+			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/add_user.jsp");
 
 			// redirect to registration page
 			rqstDispatcher.forward(request, response);
@@ -78,12 +79,13 @@ public class CreateRegistrationFirstStepController extends CommonController {
 			request.setAttribute(HttpUtils.otp0Param, processVO.getProcessAttributes().get(HttpUtils.otp0Param));
 			request.setAttribute(HttpUtils.passwordParam, password);
 
-			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/newuser1.jsp");
+			final RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/add_user_otp.jsp");
 			// redirect to account activation page
 			rqstDispatcher.forward(request, response);
 
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

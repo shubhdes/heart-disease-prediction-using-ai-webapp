@@ -37,7 +37,7 @@
                  
                   var m=window.location.pathname.substring(window.location.pathname.lastIndexOf("/")+1);
                  
-                  if(m=='newuser.jsp' || m=='Login' || m=='Signup')
+                  if(m=='add_user.jsp' || m=='Login' || m=='Signup')
                   {
                          
                       $("#d1").hide();
@@ -128,9 +128,9 @@ $(document).ready(function(){
                   <li><a href="${pageContext.request.contextPath}/jsp/viewfeedback.jsp">View Feedback</a></li>
                   
                    <li><hr></hr></li>
-                   <li><a href="${pageContext.request.contextPath}/jsp/changepassword.jsp" style="margin-top:-10px">Change Password</a></li>
-                   <li><a href="${pageContext.request.contextPath}/jsp/editprofile.jsp">Edit Profile</a></li>
-                   <li ><a href="${pageContext.request.contextPath}/jsp/signout.jsp" >Sign out</a></li>
+                   <li><a href="${pageContext.request.contextPath}/jsp/edit_password.jsp" style="margin-top:-10px">Change Password</a></li>
+                   <li><a href="${pageContext.request.contextPath}/jsp/edit_profile.jsp">Edit Profile</a></li>
+                   <li ><a href="${pageContext.request.contextPath}/jsp/logout.jsp" >Sign out</a></li>
             </ul>  
               </div> 
               <%
@@ -145,12 +145,12 @@ $(document).ready(function(){
             <a class="dropdown-toggle" style="display: inline-block;color:white" data-toggle="dropdown" href="#"><p style="text-align: center;cursor: pointer;"><i  class="fa fa-2x fa-user-circle-o"></i></p>
                 <p style="text-align: center;font-size: 15px;font-weight: bolder;cursor: pointer">Hello, <%=session.getAttribute("txtfname") %> <i class="fa fa-angle-down"></i></p></a>
               <ul class="dropdown-menu dropdown-menu-right">
-                  <li><a href="${pageContext.request.contextPath}/jsp/inputdetails.jsp">Get Prediction</a></li>
+                  <li><a href="${pageContext.request.contextPath}/jsp/get_prediction.jsp">Get Prediction</a></li>
                   
                    <li><hr></hr></li>
-                   <li><a href="${pageContext.request.contextPath}/jsp/changepassword.jsp" style="margin-top:-10px">Change Password</a></li>
-                   <li><a href="${pageContext.request.contextPath}/jsp/editprofile.jsp">Edit Profile</a></li>
-                   <li ><a href="${pageContext.request.contextPath}/jsp/signout.jsp" >Sign out</a></li>
+                   <li><a href="${pageContext.request.contextPath}/jsp/edit_password.jsp" style="margin-top:-10px">Change Password</a></li>
+                   <li><a href="${pageContext.request.contextPath}/jsp/edit_profile.jsp">Edit Profile</a></li>
+                   <li ><a href="${pageContext.request.contextPath}/jsp/logout.jsp" >Sign out</a></li>
             </ul>  
               </div> 
              <% 
@@ -160,7 +160,7 @@ $(document).ready(function(){
                %>
                <div class="col-md-2 col-md-offset-4" id="d1">
                     
-                <a href="${pageContext.request.contextPath}/jsp/newuser.jsp" style="display:inline-block"><p style="text-align: center;cursor: pointer;"><i class="fa fa-2x fa-user" style="color:white;background-color: #269abc"></i></p>
+                <a href="${pageContext.request.contextPath}/jsp/add_user.jsp" style="display:inline-block"><p style="text-align: center;cursor: pointer;"><i class="fa fa-2x fa-user" style="color:white;background-color: #269abc"></i></p>
             <p style="text-align: center;font-size: 15px;font-weight: bolder;cursor: pointer;color:white">Login / Sign up</p></a>
                 </div>
                <%

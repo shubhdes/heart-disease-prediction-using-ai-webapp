@@ -24,7 +24,7 @@
                     $("#txtlname").val(res[1]);
                     $("#txtmobile").val(res[2]);
                     $("#txtsecretquestion").val(res[3]);
-                    $("#txtanswer").val(res[4]);
+                    $("#txtanswer0").val(res[4]);
                     
                }
     
@@ -128,21 +128,21 @@
 
                   <form role="form" name="frmeditprofile" id="frmeditprofile" action="${pageContext.request.contextPath}/UpdateRegistrationController" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtfname" id="txtfname" placeholder="Enter first name" >
+                        <input type="text" class="form-control" name="txtfname" id="txtfname" placeholder="Enter First Name" >
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtlname" id="txtlname" placeholder="Enter last name"  >
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" class="form-control" name="txtmobile" id="txtmobile" placeholder="Enter mobile no" maxlength="10">
+                        <input type="text" class="form-control" name="txtlname" id="txtlname" placeholder="Enter Last Name"  >
                     </div>
                     
                     <div class="form-group">
-                        <input type="text" class="form-control" name="txtsecretquestion" id="txtsecretquestion" placeholder="Enter secret question" >
+                        <input type="tel" class="form-control" name="txtmobile" id="txtmobile" placeholder="Enter Mobile" maxlength="10">
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="txtsecretquestion" id="txtsecretquestion" placeholder="Enter Secret Question" >
                     </div>
                      <div class="form-group">
-                        <input type="text" class="form-control" name="txtanswer0" id="txtanswer0" placeholder="Enter answer" >
+                        <input type="text" class="form-control" name="txtanswer0" id="txtanswer0" placeholder="Enter Answer" >
                     </div>                   
                     <div class="form-group text-center">
                         <button type="submit" class="btn btn-danger" id="register" style=";font-weight: bolder;">Save changes</button>

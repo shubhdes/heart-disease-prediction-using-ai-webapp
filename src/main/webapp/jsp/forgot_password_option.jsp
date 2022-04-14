@@ -102,7 +102,7 @@ $(document).ready(function() {
                          <input type="hidden" name="txtoption" value="${txtoption}">
                     </div>
                      
-                      <a class="btn btn-success" href="${pageContext.request.contextPath}/jsp/forgotpassword.jsp"> << Previous</a>
+                      <a class="btn btn-success" href="${pageContext.request.contextPath}/jsp/forgot_password.jsp"> << Previous</a>
                       <button type="submit" class="btn btn-success pull-right" >Next >></button>
                     
               </form>                            
@@ -110,14 +110,16 @@ $(document).ready(function() {
       
              <div  ${div2} style="padding-top: 10px">
                  
-                  <form role="form"  id="frmforgotpassword1" action="${pageContext.request.contextPath}/ForgotPasswordFirstStepController" method="post"  >
+                  <form role="form"  id="frmforgotpassword1" action="${pageContext.request.contextPath}/ForgotPasswordSecondStepController" method="post"  >
                     <div class="form-group">
-                        <label for="txtsecret_ans" > ${question} </label>
+                        <label for="txtsecret_ans" > ${txtsecretquestion} </label>
                         <input type="text" class="form-control" name="txtanswer1" id="txtanswer1" placeholder="Enter answer"  >
+                        <input type="hidden" name="txtsecretquestion" value="${txtsecretquestion}">
+                        <input type="hidden" name="txtanswer0" value="${txtanswer0}">
                         <input type="hidden" name="txtuserid" value="${txtuserid}">
                          <input type="hidden" name="txtoption" value="${txtoption}">
                     </div>
-                     <a class="btn btn-success" href="${pageContext.request.contextPath}/jsp/forgotpassword.jsp"> << Previous</a>
+                     <a class="btn btn-success" href="${pageContext.request.contextPath}/jsp/forgot_password.jsp"> << Previous</a>
                       <button type="submit" class="btn btn-success pull-right" >Next >></button>
                          
               </form>   

@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.RegistrationService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -69,7 +70,7 @@ public class CreateRegistrationSecondStepController extends CommonController {
 			request.setAttribute("autofocus", "autofocus");
 
 			// redirect to login page
-			RequestDispatcher rd = request.getRequestDispatcher("jsp/newuser1.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/add_user_otp.jsp");
 			rd.forward(request, response);
 
 		}
@@ -88,13 +89,13 @@ public class CreateRegistrationSecondStepController extends CommonController {
 			request.setAttribute("autofocus", "autofocus");
 
 			// redirect to login page
-			RequestDispatcher rd = request.getRequestDispatcher("jsp/newuser1.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("jsp/add_user_otp.jsp");
 			rd.forward(request, response);
 
 		} else if (ProcessStatus.REGISTRATION_SUCCESS == processVO.getProcessStatus()) {
 			// user registered
 			request.setAttribute("errormsg",
-					"<div class='alert alert-success' style='text-align: center;'>Registration complete.<a href='jsp/newuser.jsp'> Login here</a> <br/></div>");
+					"<div class='alert alert-success' style='text-align: center;'>Registration complete.<a href='jsp/add_user.jsp'> Login here</a> <br/></div>");
 			request.setAttribute("disabled", "disabled");
 
 			request.setAttribute(HttpUtils.fnameParam, fname);
@@ -105,12 +106,13 @@ public class CreateRegistrationSecondStepController extends CommonController {
 			request.setAttribute(HttpUtils.answer0Param, answer);
 			request.setAttribute(HttpUtils.passwordParam, password);
 
-			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/newuser1.jsp");
+			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/add_user_otp.jsp");
 			// redirect to login page
 			rqstDispatcher.forward(request, response);
 
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

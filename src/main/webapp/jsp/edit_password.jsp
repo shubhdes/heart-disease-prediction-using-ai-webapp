@@ -103,15 +103,15 @@
                     <div class="panel-body" >
                     <form role="form"  id="frmchangepassword" action="${pageContext.request.contextPath}/UpdatePasswordController" method="post"  >
                                         <div class="form-group">
-                                            <label for="txtoldpin">Enter old password:</label>
+                                            <label for="txtoldpin">Enter Old Password:</label>
                                             <input type="password" class="form-control" name="txtoldpassword" >
                                         </div>
                                      <div class="form-group ">
-                                            <label for="txtnewpin">Enter new password:</label>
+                                            <label for="txtnewpin">Enter New Password:</label>
                                             <input type="password" class="form-control" name="txtnewpassword" >
                                         </div>
                                      <div class="form-group">
-                                            <label for="txtreenterpin">Re-enter new password:</label>
+                                            <label for="txtreenterpin">Re-enter New Password:</label>
                                             <input type="password" class="form-control" name="txtreenterpassword" >
                                         </div>
                                                

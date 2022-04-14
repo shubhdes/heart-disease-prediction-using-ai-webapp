@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.RegistrationService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -53,6 +54,7 @@ public class FetchRegistration extends CommonController {
 			//
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

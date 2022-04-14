@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.PredictionService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -68,11 +69,12 @@ public class PredictionController extends CommonController {
 					: "<div class='alert alert-success' style='text-align: center;'>Safe Zone!!</div>";
 			request.setAttribute("msg", msg1);
 
-			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/output.jsp");
+			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/result.jsp");
 			// redirect to result page
 			rqsDispatcher.forward(request, response);
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

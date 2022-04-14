@@ -12,6 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.RegistrationService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -58,12 +59,13 @@ public class UpdateRegistrationController extends CommonController {
 
 			request.setAttribute("msg", "$('#modal-msg').modal('show');");
 
-			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/editprofile.jsp");
+			RequestDispatcher rqstDispatcher = request.getRequestDispatcher("jsp/edit_profile.jsp");
 			// redirect to profile page
 			rqstDispatcher.forward(request, response);
 
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

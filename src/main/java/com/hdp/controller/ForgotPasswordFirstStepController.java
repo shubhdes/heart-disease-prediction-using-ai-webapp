@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.hdp.service.LoginService;
+import com.hdp.utils.ApplicationErrorUtils;
 import com.hdp.utils.HttpUtils;
 import com.hdp.utils.ProcessStatus;
 import com.hdp.vo.ProcessVO;
@@ -50,7 +51,7 @@ public class ForgotPasswordFirstStepController extends CommonController {
 					"<div class='alert alert-danger' style='height:70px'><a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>The specified email id/userid is not registered with us.</div>");
 			request.setAttribute("autofocus", "autofocus");
 
-			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword.jsp");
+			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password.jsp");
 			// redirect to forgot password page
 			rqsDispatcher.forward(request, response);
 
@@ -63,7 +64,7 @@ public class ForgotPasswordFirstStepController extends CommonController {
 			request.setAttribute("div2", "hidden");
 			request.setAttribute("m", "Enter the OTP sent to your registered emailid");
 
-			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword1.jsp");
+			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password_option.jsp");
 			// redirect to forgot password page
 			rqsDispatcher.forward(request, response);
 
@@ -75,12 +76,13 @@ public class ForgotPasswordFirstStepController extends CommonController {
 			request.setAttribute(HttpUtils.optionParam, "secret");
 			request.setAttribute("div1", "hidden");
 
-			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgotpassword1.jsp");
+			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password_option.jsp");
 			// redirect to forgot password page
 			rqsDispatcher.forward(request, response);
 
 		} else if (ProcessStatus.EXCEPTION == processVO.getProcessStatus()) {
 			// exception handling
+			ApplicationErrorUtils.addError(processVO.getProcessAttributes().get(HttpUtils.exceptionMsg).toString());
 		}
 	}
 }

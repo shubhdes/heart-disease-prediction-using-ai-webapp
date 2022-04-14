@@ -77,10 +77,10 @@
                 <div class="container-fluid">     
                   <form id="frmforgotpassword2" method="post" action="${pageContext.request.contextPath}/ForgotPasswordThirdStepController" style="padding-top: 10px"  >
                      <div class="form-group">
-                        <input type="password" class="form-control" name="txtpassword" placeholder="Enter new password"  >
+                        <input type="password" class="form-control" name="txtpassword" placeholder="Enter New Password"  >
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="txtconfirmpassword" placeholder="Re-enter password"  >
+                        <input type="password" class="form-control" name="txtconfirmpassword" placeholder="Re-enter Password"  >
                     </div>
                      <div class="form-group text-center">
                         <button type="submit" class="btn btn-primary" >Submit</button>

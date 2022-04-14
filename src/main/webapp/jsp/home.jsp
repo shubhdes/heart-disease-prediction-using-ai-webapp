@@ -40,7 +40,7 @@ $(document).ready(function() {
             txt_username: {
                 validators: {
                     notEmpty:{
-                         message: 'Userid is required'
+                         message: 'User Id is required'
                     },
                     emailAddress: {
                         message:'Invalid format'

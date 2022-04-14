@@ -63,12 +63,12 @@
            <form role="form" name="frmforgotpassword" id="frmforgotpassword" action="${pageContext.request.contextPath}/ForgotPasswordFirstStepController" style="padding-top: 10px"  >
                
                <div class="form-group"  >
-                       <label for="txtuserid">Enter user id:</label>
-                        <input type="text" class="form-control col-md-2" id="txtuserid" name="txtuserid" placeholder="Enter user id" ${autofocus}>
+                       <label for="txtuserid">Enter User Id:</label>
+                        <input type="text" class="form-control col-md-2" id="txtuserid" name="txtuserid" placeholder="Enter User Id" ${autofocus}>
                 </div>
                 <label for="" style="text-align:center">Choose how do you want to set new password?</label>
                     <div class="radio">
-                        <label><input type="radio" name="txtoption" value="secret">Answer secret question</label>
+                        <label><input type="radio" name="txtoption" value="secret">Answer Secret Question</label>
                     </div>
                     <div class="radio">
                         <label><input type="radio" name="txtoption" value="otp">Generate OTP</label>
