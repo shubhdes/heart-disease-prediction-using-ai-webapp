@@ -1,0 +1,38 @@
+version: "3.7"
+
+services:
+  
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      # database name
+      MYSQL_DATABASE: "hdp_db"
+      # database user's username
+      MYSQL_USER: "hdp"
+      # database user's password
+      MYSQL_PASSWORD: "mysql#25"
+      # database root's password
+      MYSQL_ROOT_PASSWORD: "mysql#25"
+    ports:
+      - "3306:3306"
+    networks:
+      - heart-disease-prediction-using-ai-webapp-network
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+
+  heart-disease-prediction-using-ai-webapp:
+    container_name: heart-disease-prediction-using-ai-webapp
+    image: shubhdes/heart-disease-prediction-using-ai-webapp:1.0
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - heart-disease-prediction-using-ai-webapp-network
+    depends_on:
+      - mysql
+
+# container network
+networks:
+  heart-disease-prediction-using-ai-webapp-network:
