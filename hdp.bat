@@ -1,4 +1,4 @@
-IF NOT DEFINED in_subprocess (cmd /k SET in_subprocess=y ^& %0 %*) & EXIT)
+if not defined in_subprocess (cmd /k set in_subprocess=y ^& %0 %*) & exit)
 
 ::stop existing running containers
 docker container stop mysql
