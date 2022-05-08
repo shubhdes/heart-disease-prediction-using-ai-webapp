@@ -79,7 +79,7 @@ $(document).ready(function() {
          %>
 
         <div class="container-fluid">
-        <div class="row" >
+ <!--        <div class="row" >
              <div class="col-md-12">
                 
                   
@@ -87,14 +87,14 @@ $(document).ready(function() {
         
         <div class="panel-body"><img src="${pageContext.request.contextPath}/images/heart.jpg" class="img-responsive" style="width:100%;" alt="Offer 1"></div>
         </div>
-               
+           
                  
            
              </div>
             
                 
 </div>
-        
+         -->
         </div>   
         
 
