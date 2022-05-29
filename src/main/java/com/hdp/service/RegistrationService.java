@@ -49,8 +49,8 @@ public class RegistrationService {
 
 			// send otp for account activation
 			logger.info("Sending email for registration request");
-			MailingUtils.registrationEmail(new String[] { fname, otp }, userId);
-			logger.info("Email sent for registration request");
+			boolean emailFlag = MailingUtils.registrationEmail(new String[] { fname, otp }, userId);
+			logger.info("Email sent for registration request:" + emailFlag);
 
 			return new ProcessVO(ProcessStatus.NEW_USER_OTP_SENT, Collections.singletonMap(HttpUtils.otp0Param, otp));
 

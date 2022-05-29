@@ -62,7 +62,7 @@ public class ForgotPasswordFirstStepController extends CommonController {
 			request.setAttribute(HttpUtils.userIdParam, userId);
 			request.setAttribute(HttpUtils.optionParam, "otp");
 			request.setAttribute("div2", "hidden");
-			request.setAttribute("m", "Enter the OTP sent to your registered emailid");
+			request.setAttribute("m", "Enter the OTP sent to your registered Email Id");
 
 			RequestDispatcher rqsDispatcher = request.getRequestDispatcher("jsp/forgot_password_option.jsp");
 			// redirect to forgot password page

@@ -45,8 +45,8 @@ public class PredictionService {
 
 			// send prediction report email
 			logger.info("Sending email for predicition request");
-			MailingUtils.predictionEmail(new String[] { fname, body }, emailId);
-			logger.info("Email sent for predicition request");
+			boolean emailFlag = MailingUtils.predictionEmail(new String[] { fname, body }, emailId);
+			logger.info("Email sent for predicition request:" + emailFlag);
 
 			return new ProcessVO(ProcessStatus.PREDICTION_SUCCESS,
 					Collections.singletonMap(HttpUtils.predictParam, predictionClass));

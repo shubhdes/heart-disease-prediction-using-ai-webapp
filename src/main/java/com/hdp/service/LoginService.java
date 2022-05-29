@@ -108,8 +108,9 @@ public class LoginService {
 				// send otp for password reset
 				final String emailId = userId;
 				logger.info("Sending email for forgot password request");
-				MailingUtils.forgotPasswordEmail(new String[] { customerVOOpt.get().getFname(), otp }, emailId);
-				logger.info("Email sent for forgot password request");
+				boolean emailFlag = MailingUtils
+						.forgotPasswordEmail(new String[] { customerVOOpt.get().getFname(), otp }, emailId);
+				logger.info("Email sent for forgot password request:" + emailFlag);
 
 				return new ProcessVO(ProcessStatus.FORGOT_PASSWORD_OTP_SENT,
 						Collections.singletonMap(HttpUtils.otp0Param, otp));

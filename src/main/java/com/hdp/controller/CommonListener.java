@@ -31,7 +31,7 @@ public class CommonListener implements ServletContextListener {
 
 			// prediction config loading
 			logger.info("Loading prediction configurations started");
-			PredictionUtils.load(context.getServletContext().getRealPath(""));
+			logger.info(PredictionUtils.load(context.getServletContext().getRealPath("")).toSummaryString());
 			logger.info("Loading prediction configurations completed");
 
 			// otp config loading

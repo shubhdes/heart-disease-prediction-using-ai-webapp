@@ -75,25 +75,46 @@ public abstract class MailingUtils {
 		return session;
 	}
 
-	public static void registrationEmail(final String[] msgParams, final String toEmailId)
+	public static boolean registrationEmail(final String[] msgParams, final String toEmailId)
 			throws AddressException, MessagingException {
 		//
-		email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(registrationSubject),
-				MessageFormat.format(emailProperties.getProperty(registrationBody), msgParams));
+		boolean flag = true;
+		try {
+			email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(registrationSubject),
+					MessageFormat.format(emailProperties.getProperty(registrationBody), msgParams));
+		} catch (Exception e) {
+			// Exception in email sending
+			flag = false;
+		}
+		return flag;
 	}
 
-	public static void forgotPasswordEmail(final String[] msgParams, final String toEmailId)
+	public static boolean forgotPasswordEmail(final String[] msgParams, final String toEmailId)
 			throws AddressException, MessagingException {
 		//
-		email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(forgotPasswordSubject),
-				MessageFormat.format(emailProperties.getProperty(forgotPasswordBody), msgParams));
+		boolean flag = true;
+		try {
+			email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(forgotPasswordSubject),
+					MessageFormat.format(emailProperties.getProperty(forgotPasswordBody), msgParams));
+		} catch (Exception e) {
+			// Exception in email sending
+			flag = false;
+		}
+		return flag;
 	}
 
-	public static void predictionEmail(final String[] msgParams, final String toEmailId)
+	public static boolean predictionEmail(final String[] msgParams, final String toEmailId)
 			throws AddressException, MessagingException {
 		//
-		email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(predictionSubject),
-				MessageFormat.format(emailProperties.getProperty(predictionBody), msgParams));
+		boolean flag = true;
+		try {
+			email(emailProperties.getProperty(userId), toEmailId, emailProperties.getProperty(predictionSubject),
+					MessageFormat.format(emailProperties.getProperty(predictionBody), msgParams));
+		} catch (Exception e) {
+			// Exception in email sending
+			flag = false;
+		}
+		return flag;
 	}
 
 	public static void email(final String fromEmailId, final String toEmailId, final String subject, final String body)

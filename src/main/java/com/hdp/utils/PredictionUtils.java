@@ -31,7 +31,7 @@ public abstract class PredictionUtils {
 
 	public static Classifier model;
 
-	public static void load(final String path) throws Exception {
+	public static Evaluation load(final String path) throws Exception {
 
 		// load training data from csv
 		trainingDataSet = dataSet(path, trainingDataFileName);
@@ -40,7 +40,7 @@ public abstract class PredictionUtils {
 		testingDataSet = dataSet(path, testingDataFileName);
 
 		// create logistic regression model
-		model();
+		return model();
 	}
 
 	public static Instances dataSet(final String path, final String fileName) throws IOException {
@@ -56,7 +56,7 @@ public abstract class PredictionUtils {
 		return dataSet;
 	}
 
-	public static void model() throws Exception {
+	public static Evaluation model() throws Exception {
 
 		model = new Logistic();
 		model.buildClassifier(trainingDataSet);
@@ -64,6 +64,7 @@ public abstract class PredictionUtils {
 		final Evaluation eval = new Evaluation(trainingDataSet);
 		eval.evaluateModel(model, testingDataSet);
 
+		return eval;
 	}
 
 	public static double predict(final String age, final String gender, final String cig, final String chol,
